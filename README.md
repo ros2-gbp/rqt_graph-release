@@ -1,3 +1,26 @@
+## rqt_graph (dashing) - 1.0.2-1
+
+The packages in the `rqt_graph` repository were released into the `dashing` distro by running `/usr/bin/bloom-release -r dashing -t dashing rqt_graph` on `Thu, 03 Oct 2019 16:01:24 -0000`
+
+The `rqt_graph` package was released.
+
+Version of package(s) in repository `rqt_graph`:
+
+- upstream repository: https://github.com/ros-visualization/rqt_graph.git
+- release repository: https://github.com/ros2-gbp/rqt_graph-release.git
+- rosdistro version: `1.0.1-1`
+- old version: `1.0.1-1`
+- new version: `1.0.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.13`
+- rosdep version: `0.16.1`
+- rosdistro version: `0.7.4`
+- vcstools version: `0.1.42`
+
+
 ## rqt_graph (crystal) - 1.0.1-1
 
 The packages in the `rqt_graph` repository were released into the `crystal` distro by running `/usr/bin/bloom-release -r crystal -t crystal rqt_graph` on `Mon, 10 Jun 2019 18:11:00 -0000`
