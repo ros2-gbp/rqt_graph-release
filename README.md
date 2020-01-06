@@ -1,3 +1,26 @@
+## rqt_graph (eloquent) - 1.0.4-1
+
+The packages in the `rqt_graph` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release -r eloquent -t eloquent rqt_graph` on `Mon, 06 Jan 2020 18:44:02 -0000`
+
+The `rqt_graph` package was released.
+
+Version of package(s) in repository `rqt_graph`:
+
+- upstream repository: https://github.com/ros-visualization/rqt_graph.git
+- release repository: https://github.com/ros2-gbp/rqt_graph-release.git
+- rosdistro version: `1.0.3-1`
+- old version: `1.0.3-1`
+- new version: `1.0.4-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.0`
+- catkin_pkg version: `0.4.15`
+- rosdep version: `0.18.0`
+- rosdistro version: `0.8.0`
+- vcstools version: `0.1.42`
+
+
 ## rqt_graph (eloquent) - 1.0.3-1
 
 The packages in the `rqt_graph` repository were released into the `eloquent` distro by running `/home/jacob/.local/bin/bloom-release -r eloquent rqt_graph` on `Thu, 24 Oct 2019 02:32:45 -0000`
