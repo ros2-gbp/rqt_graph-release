@@ -226,19 +226,29 @@ class RosGraphDotcodeGenerator:
                     label=temp_label,
                     penwidth=penwidth,
                     color=color,
-                    edgetooltip=self._qos_to_string(edge.qos))
+                    edgetooltip=self._qos_to_string(edge.start, edge.end, edge.qos))
             else:
                 dotcode_factory.add_edge_to_graph(
                     dotgraph,
                     _conv(edge.start),
                     _conv(edge.end),
                     label=edge.label,
-                    edgetooltip=self._qos_to_string(edge.qos))
+                    edgetooltip=self._qos_to_string(edge.start, edge.end, edge.qos))
 
-    def _qos_to_string(self, qos):
+    def _qos_to_string(self, start, end, qos):
         if qos is None:
             return None
-        s = 'QoS settings'
+        # topic names are prefixed with an space, unlike node names
+        # see rosgraph2_impl.topic_node()
+        if start[0] == ' ':
+            topic_name = start[1:]
+            node_name = end
+            endpoint = 'Subscription'
+        else:
+            topic_name = end[1:]
+            node_name = start
+            endpoint = 'Publisher'
+        s = f'{endpoint}\nnode_name: {node_name}\ntopic_name: {topic_name}\nQoS settings'
         for slot_name in qos.__slots__:
             property_name = slot_name[1:]
             # ignore values currently not introspectable
@@ -251,7 +261,7 @@ class RosGraphDotcodeGenerator:
                 value = value.short_key
             elif hasattr(value, 'nanoseconds'):
                 value = str(value.nanoseconds) + ' ns'
-            s += '\n- %s: %s' % (property_name, value)
+            s += f'\n- {property_name}: {value}'
         return s
 
     def _add_node(self, node, rosgraphinst, dotcode_factory, dotgraph, unreachable):
@@ -291,14 +301,28 @@ class RosGraphDotcodeGenerator:
                 shape='ellipse',
                 url=node)
 
-    def _add_topic_node(self, node, dotcode_factory, dotgraph, quiet):
+    def _add_topic_node(self, node, rosgraphinst, dotcode_factory, dotgraph, quiet):
         label = rosgraph2_impl.node_topic(node)
+        color = None
+        tooltip = None
+        if label in rosgraphinst.topic_with_qos_incompatibility:
+            color = 'red'
+            tooltip_split = ['Found qos incompatibilities:', '']
+            tooltip_split.extend([
+                f'- Publisher of node `{pub_node}` '
+                f'incompatible with subscriptions of nodes `{", ".join(sub_node_list)}`'
+                for pub_node, sub_node_list in
+                rosgraphinst.topic_with_qos_incompatibility[label].items()])
+            tooltip_split.extend(['', f'Use `ros2 topic info -v {label}` to check the qos profiles'])
+            tooltip = '<br/>'.join(tooltip_split)
         dotcode_factory.add_node_to_graph(
             dotgraph,
             nodename=_conv(node),
             nodelabel=label,
             shape='box',
-            url="topic:%s" % label)
+            url="topic:%s" % label,
+            color=color,
+            tooltip=tooltip)
 
     def _add_topic_node_group(self, node, dotcode_factory, dotgraph, quiet):
         label = rosgraph2_impl.node_topic(node)
@@ -778,11 +802,15 @@ class RosGraphDotcodeGenerator:
                 else:
                     namespace = '/'.join(n.strip().split('/')[:cluster_namespaces_level + 1])
                 self._add_topic_node(
-                    n, dotcode_factory=dotcode_factory, dotgraph=namespace_clusters[namespace],
+                    n,
+                    rosgraphinst=rosgraphinst,
+                    dotcode_factory=dotcode_factory, dotgraph=namespace_clusters[namespace],
                     quiet=quiet)
             else:
                 self._add_topic_node(
-                    n, dotcode_factory=dotcode_factory, dotgraph=dotgraph, quiet=quiet)
+                    n,
+                    rosgraphinst=rosgraphinst,
+                    dotcode_factory=dotcode_factory, dotgraph=dotgraph, quiet=quiet)
 
         for n in [act_prefix + ACTION_TOPICS_SUFFIX for act_prefix, _ in action_nodes.items()] + \
                 [img_prefix + IMAGE_TOPICS_SUFFIX for img_prefix, _ in image_nodes.items()]:
