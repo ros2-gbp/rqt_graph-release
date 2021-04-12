@@ -2,6 +2,11 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.2 (2021-04-12)
+------------------
+* Add node name, topic name, and endpoint kind to the qos edge tooltip (`#60 <https://github.com/ros-visualization/rqt_graph/issues/60>`_)
+* Contributors: Ivan Santiago Paunovic
+
 1.1.1 (2021-03-18)
 ------------------
 * Update maintainers for ROS2 branches (`#55 <https://github.com/ros-visualization/rqt_graph/issues/55>`_)
