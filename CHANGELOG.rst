@@ -2,12 +2,8 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.2.2 (2022-09-13)
+1.3.0 (2022-09-13)
 ------------------
-* Minor cleanup (`#80 <https://github.com/ros-visualization/rqt_graph/issues/80>`_)
-* Mirror rolling to galactic-devel
-* graph load/save into DOT file corrections for py3 (`#78 <https://github.com/ros-visualization/rqt_graph/issues/78>`_)
-* Contributors: Audrow Nash, David V. Lu!!, mergify[bot]
 
 1.2.1 (2022-01-14)
 ------------------
@@ -99,7 +95,7 @@ Changelog for package rqt_graph
 
 0.3.13 (2016-03-08)
 -------------------
-* Remove repeated prefixes from buttons
+* Remove repeated prefices from buttons
 * Prefix all node and topic names with `n\_` and `t\_` respectively, to allow dot to distinguish them
 * Contributors: Eric Wieser
 

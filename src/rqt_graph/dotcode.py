@@ -36,6 +36,9 @@ import re
 import copy
 
 from rqt_graph import rosgraph2_impl
+import math
+
+import pydot
 
 try:
     unicode

@@ -33,6 +33,7 @@
 
 import unittest
 
+import os
 from rqt_graph.dotcode import RosGraphDotcodeGenerator
 
 PKG = 'rqt_graph'
