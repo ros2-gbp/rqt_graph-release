@@ -3,7 +3,7 @@ from setuptools import setup
 package_name = 'rqt_graph'
 setup(
     name=package_name,
-    version='1.4.0',
+    version='1.4.1',
     package_dir={'': 'src'},
     packages=[package_name],
     data_files=[
@@ -17,8 +17,8 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     author='Dirk Thomas',
-    maintainer='Dirk Thomas, Aaron Blasdel',
-    maintainer_email='dthomas@osrfoundation.org',
+    maintainer='Michael Jeronimo',
+    maintainer_email='michael.jeronimo@openrobotics.org',
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
