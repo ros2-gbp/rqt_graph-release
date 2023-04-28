@@ -2,6 +2,9 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.5.0 (2023-04-28)
+------------------
+
 1.4.1 (2023-02-14)
 ------------------
 * [rolling] Update maintainers - 2022-11-07 (`#83 <https://github.com/ros-visualization/rqt_graph/issues/83>`_)
