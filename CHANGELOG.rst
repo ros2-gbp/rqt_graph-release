@@ -2,13 +2,10 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.5.1 (2023-05-11)
+1.4.2 (2023-05-11)
 ------------------
-* Refresh rosgraph when params checkbox is clicked (`#86 <https://github.com/ros-visualization/rqt_graph/issues/86>`_)
+* Refresh rosgraph when params checkbox is clicked (`#87 <https://github.com/ros-visualization/rqt_graph/issues/87>`_)
 * Contributors: Yadunund
-
-1.5.0 (2023-04-28)
-------------------
 
 1.4.1 (2023-02-14)
 ------------------
