@@ -2,6 +2,11 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.5.3 (2024-04-16)
+------------------
+* Update maintainer list in package.xml files (`#92 <https://github.com/ros-visualization/rqt_graph/issues/92>`_)
+* Contributors: Michael Jeronimo
+
 1.5.2 (2024-02-07)
 ------------------
 * Add a test dependency on python3-pytest. (`#91 <https://github.com/ros-visualization/rqt_graph/issues/91>`_)
