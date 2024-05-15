@@ -170,7 +170,6 @@ class RosGraph(Plugin):
         self._widget.quiet_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.unreachable_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.group_tf_check_box.clicked.connect(self._refresh_rosgraph)
-        self._widget.hide_dynamic_reconfigure_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.hide_tf_nodes_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.group_image_check_box.clicked.connect(self._refresh_rosgraph)
 
@@ -399,7 +398,7 @@ class RosGraph(Plugin):
         self._widget.group_image_check_box.setEnabled(False)
         self._widget.hide_dynamic_reconfigure_check_box.setEnabled(False)
 
-        self._update_graph_view(dotcode.decode('utf-8'))
+        self._update_graph_view(dotcode)
 
     def _fit_in_view(self):
         self._widget.graphics_view.fitInView(self._scene.itemsBoundingRect(), Qt.KeepAspectRatio)
@@ -414,7 +413,7 @@ class RosGraph(Plugin):
         if not handle.open(QIODevice.WriteOnly | QIODevice.Text):
             return
 
-        handle.write(self._current_dotcode.encode())
+        handle.write(self._current_dotcode)
         handle.close()
 
     def _save_svg(self):
