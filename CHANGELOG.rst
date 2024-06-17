@@ -2,6 +2,11 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.6.1 (2024-06-17)
+------------------
+* Fixed fit_in_view icon button (`#95 <https://github.com/ros-visualization/rqt_graph/issues/95>`_)
+* Contributors: Alejandro Hernández Cordero
+
 1.6.0 (2024-04-26)
 ------------------
 
