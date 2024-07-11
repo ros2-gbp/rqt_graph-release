@@ -2,31 +2,15 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.6.1 (2024-06-17)
+1.4.3 (2024-07-10)
 ------------------
-* Fixed fit_in_view icon button (`#95 <https://github.com/ros-visualization/rqt_graph/issues/95>`_)
+* Fixed fit_in_view icon button (`#98 <https://github.com/ros-visualization/rqt_graph/issues/98>`_)
 * Contributors: Alejandro Hernández Cordero
 
-1.6.0 (2024-04-26)
+1.4.2 (2023-05-11)
 ------------------
-
-1.5.3 (2024-04-16)
-------------------
-* Update maintainer list in package.xml files (`#92 <https://github.com/ros-visualization/rqt_graph/issues/92>`_)
-* Contributors: Michael Jeronimo
-
-1.5.2 (2024-02-07)
-------------------
-* Add a test dependency on python3-pytest. (`#91 <https://github.com/ros-visualization/rqt_graph/issues/91>`_)
-* Contributors: Chris Lalancette
-
-1.5.1 (2023-05-11)
-------------------
-* Refresh rosgraph when params checkbox is clicked (`#86 <https://github.com/ros-visualization/rqt_graph/issues/86>`_)
+* Refresh rosgraph when params checkbox is clicked (`#87 <https://github.com/ros-visualization/rqt_graph/issues/87>`_)
 * Contributors: Yadunund
-
-1.5.0 (2023-04-28)
-------------------
 
 1.4.1 (2023-02-14)
 ------------------
