@@ -2,24 +2,16 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.7.1 (2025-07-25)
+1.5.5 (2025-07-25)
 ------------------
-* add warning for type incompatibilities (backport `#105 <https://github.com/ros-visualization/rqt_graph/issues/105>`_) (`#109 <https://github.com/ros-visualization/rqt_graph/issues/109>`_)
-* Contributors: Jonas Otto
+* add warning for type incompatibilities (backport `#105 <https://github.com/ros-visualization/rqt_graph/issues/105>`_) (`#108 <https://github.com/ros-visualization/rqt_graph/issues/108>`_)
+* Remove CODEOWNERS (backport `#102 <https://github.com/ros-visualization/rqt_graph/issues/102>`_) (`#103 <https://github.com/ros-visualization/rqt_graph/issues/103>`_)
+* Contributors: Jonas Otto, mergify[bot]
 
-1.7.0 (2025-02-02)
+1.5.4 (2024-05-20)
 ------------------
-* Add in standard tests. (`#104 <https://github.com/ros-visualization/rqt_graph/issues/104>`_)
-* Remove CODEOWNERS (`#102 <https://github.com/ros-visualization/rqt_graph/issues/102>`_)
-* Contributors: Alejandro Hernández Cordero, Chris Lalancette
-
-1.6.1 (2024-06-17)
-------------------
-* Fixed fit_in_view icon button (`#95 <https://github.com/ros-visualization/rqt_graph/issues/95>`_)
-* Contributors: Alejandro Hernández Cordero
-
-1.6.0 (2024-04-26)
-------------------
+* Fixed fit_in_view icon button (backport `#95 <https://github.com/ros-visualization/rqt_graph/issues/95>`_) (`#96 <https://github.com/ros-visualization/rqt_graph/issues/96>`_)
+* Contributors: mergify[bot]
 
 1.5.3 (2024-04-16)
 ------------------
