@@ -3,7 +3,7 @@ from setuptools import setup
 package_name = 'rqt_graph'
 setup(
     name=package_name,
-    version='1.5.5',
+    version='1.5.6',
     package_dir={'': 'src'},
     packages=[package_name],
     data_files=[
@@ -22,7 +22,6 @@ setup(
     keywords=['ROS'],
     classifiers=[
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
         'Topic :: Software Development',
     ],
@@ -30,7 +29,11 @@ setup(
         'rqt_graph provides a GUI plugin for visualizing the ROS computation graph.'
     ),
     license='BSD',
-    tests_require=['pytest'],
+    extras_require={
+        'test': [
+            'pytest',
+        ],
+    },
     entry_points={
         'console_scripts': [
             'rqt_graph = rqt_graph.main:main',
