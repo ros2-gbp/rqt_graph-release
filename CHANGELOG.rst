@@ -2,54 +2,18 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.5.6 (2026-01-21)
+1.3.2 (2026-02-13)
 ------------------
-* fix setuptools deprecations (backport `#107 <https://github.com/ros-visualization/rqt_graph/issues/107>`_) (`#112 <https://github.com/ros-visualization/rqt_graph/issues/112>`_)
-  fix setuptools deprecations (`#107 <https://github.com/ros-visualization/rqt_graph/issues/107>`_)
-  (cherry picked from commit e72fdcb4a2c26781cc25415549f73ecd5f1c7419)
-  Co-authored-by: mosfet80 <10235105+mosfet80@users.noreply.github.com>
+* fix setuptools deprecations (backport `#107 <https://github.com/ros-visualization/rqt_graph/issues/107>`_) (`#113 <https://github.com/ros-visualization/rqt_graph/issues/113>`_)
 * Contributors: mergify[bot]
 
-1.5.5 (2025-07-25)
+1.3.1 (2024-05-15)
 ------------------
-* add warning for type incompatibilities (backport `#105 <https://github.com/ros-visualization/rqt_graph/issues/105>`_) (`#108 <https://github.com/ros-visualization/rqt_graph/issues/108>`_)
-* Remove CODEOWNERS (backport `#102 <https://github.com/ros-visualization/rqt_graph/issues/102>`_) (`#103 <https://github.com/ros-visualization/rqt_graph/issues/103>`_)
-* Contributors: Jonas Otto, mergify[bot]
-
-1.5.4 (2024-05-20)
-------------------
-* Fixed fit_in_view icon button (backport `#95 <https://github.com/ros-visualization/rqt_graph/issues/95>`_) (`#96 <https://github.com/ros-visualization/rqt_graph/issues/96>`_)
+* Fixed fit_in_view icon button (backport `#95 <https://github.com/ros-visualization/rqt_graph/issues/95>`_) (`#97 <https://github.com/ros-visualization/rqt_graph/issues/97>`_)
 * Contributors: mergify[bot]
 
-1.5.3 (2024-04-16)
+1.3.0 (2022-09-13)
 ------------------
-* Update maintainer list in package.xml files (`#92 <https://github.com/ros-visualization/rqt_graph/issues/92>`_)
-* Contributors: Michael Jeronimo
-
-1.5.2 (2024-02-07)
-------------------
-* Add a test dependency on python3-pytest. (`#91 <https://github.com/ros-visualization/rqt_graph/issues/91>`_)
-* Contributors: Chris Lalancette
-
-1.5.1 (2023-05-11)
-------------------
-* Refresh rosgraph when params checkbox is clicked (`#86 <https://github.com/ros-visualization/rqt_graph/issues/86>`_)
-* Contributors: Yadunund
-
-1.5.0 (2023-04-28)
-------------------
-
-1.4.1 (2023-02-14)
-------------------
-* [rolling] Update maintainers - 2022-11-07 (`#83 <https://github.com/ros-visualization/rqt_graph/issues/83>`_)
-* Contributors: Audrow Nash, Chris Lalancette
-
-1.4.0 (2022-09-13)
-------------------
-* Minor cleanup (`#80 <https://github.com/ros-visualization/rqt_graph/issues/80>`_)
-* Mirror rolling to galactic-devel
-* graph load/save into DOT file corrections for py3 (`#78 <https://github.com/ros-visualization/rqt_graph/issues/78>`_)
-* Contributors: Audrow Nash, David V. Lu!!, mergify[bot]
 
 1.2.1 (2022-01-14)
 ------------------
@@ -141,7 +105,7 @@ Changelog for package rqt_graph
 
 0.3.13 (2016-03-08)
 -------------------
-* Remove repeated prefixes from buttons
+* Remove repeated prefices from buttons
 * Prefix all node and topic names with `n\_` and `t\_` respectively, to allow dot to distinguish them
 * Contributors: Eric Wieser
 
