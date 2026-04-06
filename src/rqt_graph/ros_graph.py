@@ -28,59 +28,47 @@
 # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from __future__ import division
 import os
 
 from ament_index_python import get_resource
 from python_qt_binding import loadUi
 from python_qt_binding.QtCore import QAbstractListModel, QFile, QIODevice, Qt, Signal
-from python_qt_binding.QtGui import QIcon, QImage, QPainter
-from python_qt_binding.QtWidgets import QCompleter, QFileDialog, QGraphicsScene, QWidget
+from python_qt_binding.QtGui import QColorConstants, QIcon, QImage, QPainter
 from python_qt_binding.QtSvg import QSvgGenerator
-
-from rqt_graph.rosgraph2_impl import Graph
+from python_qt_binding.QtWidgets import QCompleter, QFileDialog, QGraphicsScene, QWidget
 
 from qt_dotgraph.dot_to_qt import DotToQtGenerator
 # pydot requires some hacks
 from qt_dotgraph.pydotfactory import PydotFactory
+from rqt_graph.rosgraph2_impl import Graph
+
 from rqt_gui_py.plugin import Plugin
-# TODO: use pygraphviz instead, but non-deterministic layout will first be resolved in graphviz 2.30
-# from qtgui_plugin.pygraphvizfactory import PygraphvizFactory
 
 from .dotcode import \
-    RosGraphDotcodeGenerator, NODE_NODE_GRAPH, NODE_TOPIC_ALL_GRAPH, NODE_TOPIC_GRAPH
+    NODE_NODE_GRAPH, NODE_TOPIC_ALL_GRAPH, NODE_TOPIC_GRAPH, RosGraphDotcodeGenerator
 from .interactive_graphics_view import InteractiveGraphicsView
-
-try:
-    unicode
-    # we're on python2, or the "unicode" function has already been defined elsewhere
-except NameError:
-    unicode = str
-    # we're on python3
 
 
 class RepeatedWordCompleter(QCompleter):
-
-    """A completer that completes multiple times from a list"""
+    """A completer that completes multiple times from a list."""
 
     def init(self, parent=None):
         QCompleter.init(self, parent)
 
     def pathFromIndex(self, index):
         path = QCompleter.pathFromIndex(self, index)
-        lst = unicode(self.widget().text()).split(',')
+        lst = str(self.widget().text()).split(',')
         if len(lst) > 1:
             path = '%s, %s' % (','.join(lst[:-1]), path)
         return path
 
     def splitPath(self, path):
-        path = unicode(path.split(',')[-1]).lstrip(' ')
+        path = str(path.split(',')[-1]).lstrip(' ')
         return [path]
 
 
 class NamespaceCompletionModel(QAbstractListModel):
-
-    """Ros package and stacknames"""
+    """Ros package and stacknames."""
 
     def __init__(self, linewidget, topics_only):
         super(NamespaceCompletionModel, self).__init__(linewidget)
@@ -89,8 +77,8 @@ class NamespaceCompletionModel(QAbstractListModel):
     def refresh(self, names):
         namesset = set()
         for n in names:
-            namesset.add(unicode(n).strip())
-            namesset.add("-%s" % (unicode(n).strip()))
+            namesset.add(str(n).strip())
+            namesset.add('-%s' % (str(n).strip()))
         self.names = sorted(namesset)
 
     def rowCount(self, parent):
@@ -135,7 +123,7 @@ class RosGraph(Plugin):
                 self._widget.windowTitle() + (' (%d)' % context.serial_number()))
 
         self._scene = QGraphicsScene()
-        self._scene.setBackgroundBrush(Qt.white)
+        self._scene.setBackgroundBrush(QColorConstants.White)
         self._widget.graphics_view.setScene(self._scene)
 
         self._widget.graph_type_combo_box.insertItem(0, self.tr('Nodes only'), NODE_NODE_GRAPH)
@@ -148,18 +136,18 @@ class RosGraph(Plugin):
 
         self.node_completionmodel = NamespaceCompletionModel(self._widget.filter_line_edit, False)
         completer = RepeatedWordCompleter(self.node_completionmodel, self)
-        completer.setCompletionMode(QCompleter.PopupCompletion)
+        completer.setCompletionMode(QCompleter.CompletionMode.PopupCompletion)
         completer.setWrapAround(True)
-        completer.setCaseSensitivity(Qt.CaseInsensitive)
+        completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
         self._widget.filter_line_edit.editingFinished.connect(self._refresh_rosgraph)
         self._widget.filter_line_edit.setCompleter(completer)
 
         self.topic_completionmodel = NamespaceCompletionModel(
             self._widget.topic_filter_line_edit, False)
         topic_completer = RepeatedWordCompleter(self.topic_completionmodel, self)
-        topic_completer.setCompletionMode(QCompleter.PopupCompletion)
+        topic_completer.setCompletionMode(QCompleter.CompletionMode.PopupCompletion)
         topic_completer.setWrapAround(True)
-        topic_completer.setCaseSensitivity(Qt.CaseInsensitive)
+        topic_completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
         self._widget.topic_filter_line_edit.editingFinished.connect(self._refresh_rosgraph)
         self._widget.topic_filter_line_edit.setCompleter(topic_completer)
 
@@ -170,6 +158,7 @@ class RosGraph(Plugin):
         self._widget.quiet_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.unreachable_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.group_tf_check_box.clicked.connect(self._refresh_rosgraph)
+        self._widget.hide_dynamic_reconfigure_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.hide_tf_nodes_check_box.clicked.connect(self._refresh_rosgraph)
         self._widget.group_image_check_box.clicked.connect(self._refresh_rosgraph)
 
@@ -191,7 +180,7 @@ class RosGraph(Plugin):
         self._widget.save_as_image_push_button.pressed.connect(self._save_image)
 
         self._update_rosgraph()
-        self._deferred_fit_in_view.connect(self._fit_in_view, Qt.QueuedConnection)
+        self._deferred_fit_in_view.connect(self._fit_in_view, Qt.ConnectionType.QueuedConnection)
         self._deferred_fit_in_view.emit()
 
         context.add_widget(self._widget)
@@ -232,7 +221,8 @@ class RosGraph(Plugin):
     def restore_settings(self, plugin_settings, instance_settings):
         self._widget.graph_type_combo_box.setCurrentIndex(
             int(instance_settings.value('graph_type_combo_box_index', 0)))
-        self._widget.filter_line_edit.setText(instance_settings.value('filter_line_edit_text', '/'))
+        filter_value = instance_settings.value('filter_line_edit_text', '/')
+        self._widget.filter_line_edit.setText(filter_value)
         self._widget.topic_filter_line_edit.setText(
             instance_settings.value('topic_filter_line_edit_text', '/'))
         self._widget.namespace_cluster_spin_box.setValue(
@@ -398,10 +388,11 @@ class RosGraph(Plugin):
         self._widget.group_image_check_box.setEnabled(False)
         self._widget.hide_dynamic_reconfigure_check_box.setEnabled(False)
 
-        self._update_graph_view(dotcode)
+        self._update_graph_view(dotcode.decode('utf-8'))
 
     def _fit_in_view(self):
-        self._widget.graphics_view.fitInView(self._scene.itemsBoundingRect(), Qt.KeepAspectRatio)
+        self._widget.graphics_view.fitInView(
+            self._scene.itemsBoundingRect(), Qt.AspectRatioMode.KeepAspectRatio)
 
     def _save_dot(self):
         file_name, _ = QFileDialog.getSaveFileName(
@@ -413,7 +404,7 @@ class RosGraph(Plugin):
         if not handle.open(QIODevice.WriteOnly | QIODevice.Text):
             return
 
-        handle.write(self._current_dotcode)
+        handle.write(self._current_dotcode.encode())
         handle.close()
 
     def _save_svg(self):
