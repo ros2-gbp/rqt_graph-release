@@ -2,10 +2,10 @@
 Changelog for package rqt_graph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.0.0 (2026-05-06)
+1.8.3 (2026-05-06)
 ------------------
-* Support Wheel event in qt6 (`#116 <https://github.com/ros-visualization/rqt_graph/issues/116>`_)
-* Contributors: Alejandro Hernández Cordero
+* Support Wheel event in qt6 (backport `#116 <https://github.com/ros-visualization/rqt_graph/issues/116>`_) (`#117 <https://github.com/ros-visualization/rqt_graph/issues/117>`_)
+* Contributors: mergify[bot]
 
 1.8.2 (2026-04-06)
 ------------------
